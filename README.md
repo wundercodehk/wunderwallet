@@ -8,3 +8,6 @@ cd sdk-demo
 yarn install
 yarn start
 ```
+# TODO
+maybe not completed
+https://docs.ethers.org/v6/migrating/

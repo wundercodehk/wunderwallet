@@ -41,7 +41,7 @@ const Faucet: React.FC = () => {
         data: faucetTxData.data,
       };
 
-      const txResponse = await smartAccount.sendTransaction({
+      const txResponse = await smartAccount.broadcastTransaction({
         transaction: tx1,
       });
       console.log("userOpHash", txResponse);

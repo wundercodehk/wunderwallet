@@ -85,7 +85,7 @@ export const SmartAccountProvider = ({ children }: any) => {
 
     try {
       setLoading(true);
-      const walletProvider = new ethers.providers.Web3Provider(provider);
+      const walletProvider = new ethers.BrowserProvider(provider);
       console.log("walletProvider", walletProvider);
       // New instance, all config params are optional
       const wallet = new SmartAccount(walletProvider, {

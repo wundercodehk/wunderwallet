@@ -11,7 +11,7 @@ import {
   showErrorMessage,
 } from "../../utils";
 
-const iFace = new ethers.utils.Interface(config.usdc.abi);
+const iFace = new ethers.Interface(config.usdc.abi);
 
 const BatchLiquidity: React.FC = () => {
   const classes = useStyles();
@@ -28,7 +28,7 @@ const BatchLiquidity: React.FC = () => {
 
       const approveCallData = iFace.encodeFunctionData("approve", [
         config.hyphenLP.address,
-        ethers.BigNumber.from("1000000"),
+        BigInt("1000000"),
       ]);
       const tx1 = {
         to: config.usdc.address,
@@ -44,7 +44,7 @@ const BatchLiquidity: React.FC = () => {
       const hyphenLPTx =
         await hyphenContract.populateTransaction.addTokenLiquidity(
           config.usdc.address,
-          ethers.BigNumber.from("1000000"),
+          BigInt("1000000"),
           {
             from: smartAccount.address,
           }
@@ -56,7 +56,7 @@ const BatchLiquidity: React.FC = () => {
       // todo check this for hyphen LP on Mumbai!
       txs.push(tx2);
 
-      const txResponse = await smartAccount.sendTransactionBatch({
+      const txResponse = await smartAccount.broadcastTransactionBatch({
         transactions: txs,
       });
 

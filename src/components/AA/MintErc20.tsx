@@ -45,7 +45,7 @@ const MintErc20: React.FC = () => {
         config.terc20.abi,
         web3Provider
       );
-      const amountGwei = ethers.utils.parseEther("100");
+      const amountGwei = ethers.parseEther("100");
       const data = erc20Contract.interface.encodeFunctionData("mint", [
         smartAccount.address,
         amountGwei,
@@ -54,7 +54,7 @@ const MintErc20: React.FC = () => {
         to: config.terc20.address,
         data: data,
       };
-      const txResponse = await smartAccount.sendTransaction({
+      const txResponse = await smartAccount.broadcastTransaction({
         transaction: tx,
       });
       console.log("userOpHash", txResponse);
@@ -94,7 +94,7 @@ const MintErc20: React.FC = () => {
         {balance === null ? (
           <p style={{ color: "#7E7E7E", display: "contents" }}>fetching...</p>
         ) : (
-          ethers.utils.formatEther(balance.toString())
+          ethers.formatEther(balance.toString())
         )}
       </p>
 

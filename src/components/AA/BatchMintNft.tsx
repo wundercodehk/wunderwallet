@@ -59,7 +59,7 @@ const BatchMintNft: React.FC = () => {
         data: safeMintTx.data,
       };
 
-      const txResponse = await smartAccount.sendTransactionBatch({
+      const txResponse = await smartAccount.broadcastTransactionBatch({
         transactions: [tx1, tx2],
       });
 

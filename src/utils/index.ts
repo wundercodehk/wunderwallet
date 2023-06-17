@@ -1,4 +1,4 @@
-import { BigNumber, Wallet as EOAWallet } from "ethers";
+import { Wallet as EOAWallet } from "ethers";
 import { JsonRpcProvider } from "@ethersproject/providers";
 import configInfo from "./configs/contractsInfo.json";
 import { toast } from "react-toastify";
@@ -81,11 +81,11 @@ export const copyToClipBoard = (copyMe: string) => {
 };
 
 export const formatBalance = (value: string, decimals: number) => {
-  const divideBy = BigNumber.from(10).pow(BigNumber.from(decimals));
+  const divideBy = BigInt(10) ** BigInt(decimals);
   const balance = (parseFloat(value) / parseFloat(divideBy.toString())).toFixed(
     4
   );
   console.log(" formatBalance ", balance);
-  // let res = ethers.utils.formatEther(balance);
+  // let res = ethers.formatEther(balance);
   return balance.toString();
 };

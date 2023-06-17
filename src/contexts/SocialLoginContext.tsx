@@ -7,8 +7,8 @@ interface web3AuthContextType {
   connect: () => Promise<SocialLogin | null | undefined>;
   disconnect: () => Promise<void>;
   provider: any;
-  ethersProvider: ethers.providers.Web3Provider | null;
-  web3Provider: ethers.providers.Web3Provider | null;
+  ethersProvider: ethers.BrowserProvider | null;
+  web3Provider: ethers.BrowserProvider | null;
   loading: boolean;
   chainId: number;
   address: string;
@@ -32,8 +32,8 @@ export enum SignTypeMethod {
 
 type StateType = {
   provider?: any;
-  web3Provider?: ethers.providers.Web3Provider | null;
-  ethersProvider?: ethers.providers.Web3Provider | null;
+  web3Provider?: ethers.BrowserProvider | null;
+  ethersProvider?: ethers.BrowserProvider | null;
   address?: string;
   chainId?: number;
 };
@@ -59,7 +59,7 @@ export const Web3AuthProvider = ({ children }: any) => {
     const initWallet = async () => {
       const sdk = new SocialLogin();
       await sdk.init({
-        chainId: ethers.utils.hexValue(activeChainId).toString(),
+        chainId: ethers.toQuantity(activeChainId).toString(),
         network: "testnet",
         whitelistUrls: {
           "https://sdk-staging.biconomy.io":
@@ -91,7 +91,7 @@ export const Web3AuthProvider = ({ children }: any) => {
     if (socialLoginSDK?.provider) {
       setLoading(true);
       console.info("socialLoginSDK.provider", socialLoginSDK.provider);
-      const web3Provider = new ethers.providers.Web3Provider(
+      const web3Provider = new ethers.BrowserProvider(
         socialLoginSDK.provider
       );
       const signer = web3Provider.getSigner();
@@ -114,7 +114,7 @@ export const Web3AuthProvider = ({ children }: any) => {
     setLoading(true);
     const sdk = new SocialLogin();
     await sdk.init({
-      chainId: ethers.utils.hexValue(activeChainId).toString(),
+      chainId: ethers.toQuantity(activeChainId).toString(),
       network: "testnet",
       whitelistUrls: {
         "https://sdk-staging.biconomy.io":

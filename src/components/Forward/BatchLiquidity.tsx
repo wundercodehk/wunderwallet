@@ -46,7 +46,7 @@ const BatchLiquidity: React.FC = () => {
       );
       const approveUSDCTx = await usdcContract.populateTransaction.approve(
         config.hyphenLP.address,
-        ethers.BigNumber.from("1000000")
+        BigInt("1000000")
       );
       const tx1 = {
         to: config.usdc.address,
@@ -57,7 +57,7 @@ const BatchLiquidity: React.FC = () => {
       const hyphenLPTx =
         await hyphenContract.populateTransaction.addTokenLiquidity(
           config.usdc.address,
-          ethers.BigNumber.from("1000000")
+          BigInt("1000000")
         );
 
       const tx2 = {
@@ -98,7 +98,7 @@ const BatchLiquidity: React.FC = () => {
 
       const approveUSDCTx = await usdcContract.populateTransaction.approve(
         config.hyphenLP.address,
-        ethers.BigNumber.from("1000000")
+        BigInt("1000000")
       );
       const tx1 = {
         to: config.usdc.address,
@@ -109,7 +109,7 @@ const BatchLiquidity: React.FC = () => {
       const hyphenLPTx =
         await hyphenContract.populateTransaction.addTokenLiquidity(
           config.usdc.address,
-          ethers.BigNumber.from("1000000")
+          BigInt("1000000")
         );
       const tx2 = {
         to: config.hyphenLP.address,
